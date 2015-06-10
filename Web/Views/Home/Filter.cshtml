@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Web.ViewModels.ProductViewModel>
+
+<div class="container">
+    <div class="jumbotron">
+
+        @foreach (var item in Model)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.Label(item.Name)
+                </div>
+                @Html.Partial("Product", item)
+            </div>
+        }
+
+    </div>
+</div>
+
