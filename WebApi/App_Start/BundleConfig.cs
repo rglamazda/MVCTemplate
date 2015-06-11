@@ -16,7 +16,7 @@ namespace WebApi
           
             bundles.Add(new ScriptBundle("~/angular/js").Include("~/content/script/angular.js", 
                 "~/content/script/angular-route.js",
-                "~JavaScript/app.js"));
+                "~/JavaScript/app.js"));
 
             bundles.Add(new StyleBundle("~/bootstrap/css").Include(
               "~/content/css/bootstrap.css",
