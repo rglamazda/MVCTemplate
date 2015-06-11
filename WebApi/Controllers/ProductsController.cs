@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Model;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using Service;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,25 +13,49 @@ namespace WebApi.Controllers
     public class ProductsController : ApiController
     {
         private readonly ICategoryService categoryService;
-        private readonly IProductService gadgetService;
+        private readonly IProductService productService;
 
-        public ProductsController(ICategoryService categoryService, IProductService gadgetService)
+        public ProductsController(ICategoryService categoryService, IProductService productService)
         {
             this.categoryService = categoryService;
-            this.gadgetService = gadgetService;
+            this.productService = productService;
         }
 
-        public IQueryable<CategoryViewModel> Get(string category = null)
+        //public IQueryable<CategoryViewModel> Get(string category = null)
+        //{
+        //    IEnumerable<CategoryViewModel> viewModelGadgets;
+        //    IEnumerable<Category> categories;
+
+        //    categories = categoryService.GetCategories(category).ToList();
+
+        //    viewModelGadgets = Mapper.Map<IEnumerable<Category>, IEnumerable<CategoryViewModel>>(categories);
+
+        //    return viewModelGadgets.AsQueryable();
+        //}
+
+        public IQueryable<ProductViewModel> Get()
         {
-            IEnumerable<CategoryViewModel> viewModelGadgets;
-            IEnumerable<Category> categories;
+            IEnumerable<ProductViewModel> productViewModels;
+            IEnumerable<Product> products;
 
-            categories = categoryService.GetCategories(category).ToList();
+            products = productService.GetProducts().ToList();
 
-            viewModelGadgets = Mapper.Map<IEnumerable<Category>, IEnumerable<CategoryViewModel>>(categories);
+            productViewModels = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(products);
 
-            return viewModelGadgets.AsQueryable();
+            return productViewModels.AsQueryable();
+
+            //var settings = new JsonSerializerSettings
+            //{
+            //    ContractResolver = new CamelCasePropertyNamesContractResolver(),
+            //};
+
+            //var str = Newtonsoft.Json.JsonConvert.SerializeObject(productViewModels, settings);
+
+           // return str;
+            //return Ok(Newtonsoft.Json.JsonConvert.SerializeObject(productViewModels, settings));
+
         }
+
 
 
         public string Get(string category, string productName)
@@ -37,7 +63,7 @@ namespace WebApi.Controllers
             IEnumerable<ProductViewModel> viewModelproducts;
             IEnumerable<Product> products;
 
-            products = gadgetService.GetCategoryProducts(category, productName);
+            products = productService.GetCategoryProducts(category, productName);
 
             viewModelproducts = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(products);
 
@@ -50,13 +76,13 @@ namespace WebApi.Controllers
             if (newProduct != null && newProduct.File != null)
             {
                 var product = Mapper.Map<ProductFormViewModel, Product>(newProduct);
-                gadgetService.CreateProduct(product);
+                productService.CreateProduct(product);
 
                 string gadgetPicture = System.IO.Path.GetFileName(newProduct.File.FileName);
                 string path = System.IO.Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Content/images/"), gadgetPicture);
                 newProduct.File.SaveAs(path);
 
-                gadgetService.SaveGadget();
+                productService.SaveGadget();
             }
 
             var category = categoryService.GetCategory(newProduct.ProductCategory);

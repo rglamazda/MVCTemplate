@@ -10,15 +10,19 @@ namespace WebApi
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/jquery/js").Include("~/content/script/jquery-1.9.1.js"));
+            bundles.Add(new ScriptBundle("~/jquery").Include("~/content/scripts/jquery-1.9.1.js"));
 
-            bundles.Add(new ScriptBundle("~/bootstrap/js").Include("~/content/script/bootstrap.js"));
-          
-            bundles.Add(new ScriptBundle("~/angular/js").Include("~/content/script/angular.js", 
-                "~/content/script/angular-route.js",
+            bundles.Add(new ScriptBundle("~/bootstrap").Include("~/content/scripts/bootstrap.js"));
+
+            bundles.Add(new ScriptBundle("~/angularJs").Include("~/content/scripts/angular.js",
+                "~/content/scripts/angular-route.js",
                 "~/JavaScript/app.js"));
 
-            bundles.Add(new StyleBundle("~/bootstrap/css").Include(
+            bundles.Add(new ScriptBundle("~/angularJs-products").Include(
+              "~/JavaScript/Products/products-controller.js",
+              "~/JavaScript/Products/products-service.js"));
+
+            bundles.Add(new StyleBundle("~/bootstrap").Include(
               "~/content/css/bootstrap.css",
               "~/content/css/bootstrap-theme.css"));
 

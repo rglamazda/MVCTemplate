@@ -60,14 +60,14 @@ namespace Data
                     Image= "neutab.jpg"
                 },
                 new Product {
-                    Name = "Dragon Touch® Y88X 7",
+                    Name = "Dragon Touch® Y88X 77",
                     Description = "Dragon Touch Y88X tablet featuring the incredible powerful Allwinner Quad Core A33, up to four times faster CPU, ensures faster multitasking speed than ever. With the super-portable size, you get a robust power in a device that can be taken everywhere",
                     CategoryID = 1,
                     Price = 54.99m,
                     Image= "dragon-touch.jpg"
                 },
                 new Product {
-                    Name = "Alldaymall A88X 7",
+                    Name = "Alldaymall A88X 77",
                     Description = "This Alldaymall tablet featuring the incredible powerful Allwinner Quad Core A33, up to four times faster CPU, ensures faster multitasking speed than ever. With the super-portable size, you get a robust power in a device that can be taken everywhere",
                     CategoryID = 1,
                     Price = 47.99m,
