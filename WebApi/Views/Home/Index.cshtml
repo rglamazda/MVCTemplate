@@ -3,16 +3,10 @@
     <div class="jumbotron">
         <div class="panel-body" ng-controller="productsController">
             <div class="media" ng-repeat="product in allProducts">
-                @*<a class="pull-left" href="#">
-                    <img class="media-object" ng-src="{{product.image}}" />
-                </a>*@
-                <input type="hidden" value="{{product.ProductID}}" />
-                <div class="media-body">
-                    <h3 class="media-heading">
-                        {{product.Name}}
-                    </h3>
-                    <p>{{product.Description}}</p>
-                </div>
+                <product-card productid="product.productID"
+                              name="product.Name"
+                              description="product.Description"
+                              image="product.Image"></product-card>
             </div>
         </div>
     </div>

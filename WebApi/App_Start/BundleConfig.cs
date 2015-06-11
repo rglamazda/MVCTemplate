@@ -20,7 +20,8 @@ namespace WebApi
 
             bundles.Add(new ScriptBundle("~/angularJs-products").Include(
               "~/JavaScript/Products/products-controller.js",
-              "~/JavaScript/Products/products-service.js"));
+              "~/JavaScript/Products/products-service.js",
+              "~/JavaScript/Products/productCard-directive.js"));
 
             bundles.Add(new StyleBundle("~/bootstrap").Include(
               "~/content/css/bootstrap.css",
